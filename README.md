@@ -3,7 +3,7 @@
 __Информация о проекте__
 
 Необходимо организовать систему учета для питомника в котором живут
-домашние и Pack animals.
+домашние и вьючные животные.
 ___
 
 ## Операционные системы и виртуализация (Linux)
@@ -99,7 +99,7 @@ __6. Диаграмма классов__
 Диаграмму можно нарисовать в любом редакторе, такими как Lucidchart,
 Draw.io, Microsoft Visio и других.
 
-![Диаграмма](Images/Diagram.png)
+![Диаграмма](Images/Diagram.jpg)
 
 __7. Работа с MySQL (Задача выполняется в случае успешного выполнения
 задачи “Работа с MySQL в Linux. “Установить MySQL на вашу машину”)__
@@ -112,12 +112,179 @@ __7. Работа с MySQL (Задача выполняется в случае 
 
 7.2 В ранее подключенном MySQL создать базу данных с названием
 "Human Friends".
-- Создать таблицы, соответствующие иерархии из вашей диаграммы
+````
+-- Создаем базу данных humanfriends
+DROP DATABASE IF EXISTS humanfriends;
+CREATE DATABASE humanfriends;
+````
+Создать таблицы, соответствующие иерархии из вашей диаграммы
 классов.
-- Заполнить таблицы данными о животных, их командах и датами
+````
+USE humanfriends;
+
+-- Создаем таблицы отдельных видов животных, таблицы питомцев и вьюточных животных, таблицу всех животных, собранных вместе
+DROP TABLE IF EXISTS humanfriends.cats;
+CREATE TABLE humanfriends.cats (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL,
+  birthDate DATE NOT NULL,
+  gender CHAR(1) NOT NULL,
+  isPredator TINYINT NOT NULL,
+  commands TEXT NOT NULL,
+  PRIMARY KEY (id));
+  
+DROP TABLE IF EXISTS humanfriends.dogs;
+CREATE TABLE humanfriends.dogs (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL,
+  birthDate DATE NOT NULL,
+  gender CHAR(1) NOT NULL,
+  isPredator TINYINT NOT NULL,
+  commands TEXT NOT NULL,
+  PRIMARY KEY (id));
+  
+DROP TABLE IF EXISTS humanfriends.hamsters;
+CREATE TABLE humanfriends.hamsters (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL,
+  birthDate DATE NOT NULL,
+  gender CHAR(1) NOT NULL,
+  isPredator TINYINT NOT NULL,
+  commands TEXT NOT NULL,
+  PRIMARY KEY (id));
+  
+DROP TABLE IF EXISTS humanfriends.horses;
+CREATE TABLE humanfriends.horses (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL,
+  birthDate DATE NOT NULL,
+  gender CHAR(1) NOT NULL,
+  isPredator TINYINT NOT NULL,
+  commands TEXT NOT NULL,
+  PRIMARY KEY (id));
+  
+DROP TABLE IF EXISTS humanfriends.donkeys;
+CREATE TABLE humanfriends.donkeys (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL,
+  birthDate DATE NOT NULL,
+  gender CHAR(1) NOT NULL,
+  isPredator TINYINT NOT NULL,
+  commands TEXT NOT NULL,
+  PRIMARY KEY (id));
+
+DROP TABLE IF EXISTS humanfriends.camels;
+CREATE TABLE humanfriends.camels (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL,
+  birthDate DATE NOT NULL,
+  gender CHAR(1) NOT NULL,
+  isPredator TINYINT NOT NULL,
+  commands TEXT NOT NULL,
+  PRIMARY KEY (id));
+  
+DROP TABLE IF EXISTS humanfriends.pets;
+CREATE TABLE humanfriends.pets (
+  id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  subtype VARCHAR(45) NOT NULL,
+  name VARCHAR(45) NOT NULL,
+  birthDate DATE NOT NULL,
+  gender CHAR(1) NOT NULL,
+  isPredator TINYINT NOT NULL,
+  commands TEXT NOT NULL);
+  
+DROP TABLE IF EXISTS humanfriends.packanimals;
+CREATE TABLE humanfriends.packanimals (
+  id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  subtype VARCHAR(45) NOT NULL,
+  name VARCHAR(45) NOT NULL,
+  birthDate DATE NOT NULL,
+  gender CHAR(1) NOT NULL,
+  isPredator TINYINT NOT NULL,
+  commands TEXT NOT NULL);
+  
+DROP TABLE IF EXISTS humanfriends.animals;
+CREATE TABLE humanfriends.animals (
+  id INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  type VARCHAR(45) NOT NULL,
+  subtype VARCHAR(45) NOT NULL,
+  name VARCHAR(45) NOT NULL,
+  birthDate DATE NOT NULL,
+  gender CHAR(1) NOT NULL,
+  isPredator TINYINT NOT NULL,
+  commands TEXT NOT NULL);
+````
+Заполнить таблицы данными о животных, их командах и датах
 рождения.
-- Удалить записи о верблюдах и объединить таблицы лошадей и ослов.
-- Создать новую таблицу для животных в возрасте от 1 до 3 лет и вычислить
+````
+-- Заполняем таблицы животными 
+INSERT INTO humanfriends.cats (id, name, birthDate, gender, isPredator, commands)
+VALUES 
+('1', 'Katya', '2000-03-01', 'f', '1', 'eat, jump, walk, bePetted, meow'),
+('2', 'Sasha', '2006-09-13', 'f', '1', 'eat, jump, walk, bePetted, meow'),
+('3', 'Seva', '2015-10-10', 'm', '1', 'eat, jump, walk, bePetted, meow');
+
+INSERT INTO humanfriends.dogs (id, name, birthDate, gender, isPredator, commands)
+VALUES 
+('1', 'Bobik', '2011-11-01', 'm', '1', 'eat, jump, walk, bePetted, bark'),
+('2', 'Rex', '2007-07-17', 'm', '1', 'eat, jump, walk, bePetted, bark'),
+('3', 'Mukhtar', '2022-04-04', 'm', '1', 'eat, jump, walk, bePetted, bark');
+
+INSERT INTO humanfriends.hamsters (id, name, birthDate, gender, isPredator, commands)
+VALUES 
+('1', 'Elvin', '2023-06-12', 'm', '0', 'eat, jump, walk, bePetted, playDead'),
+('2', 'Ryzhik', '2024-01-11', 'm', '0', 'eat, jump, walk, bePetted, playDead'),
+('3', 'Vasilisa', '2024-02-04', 'f', '0', 'eat, jump, walk, bePetted, playDead');
+
+INSERT INTO humanfriends.horses (id, name, birthDate, gender, isPredator, commands)
+VALUES 
+('1', 'Servilat', '2020-03-20', 'm', '0', 'eat, jump, walk, transportRider, neigh'),
+('2', 'Lyubimka', '2018-02-14', 'f', '0', 'eat, jump, walk, transportRider, neigh');
+
+INSERT INTO humanfriends.donkeys (id, name, birthDate, gender, isPredator, commands)
+VALUES 
+('1', 'Donkey', '2012-06-02', 'm', '0', 'eat, jump, walk, transportRider, hee-haw'),
+('2', 'Hee-Haw', '2017-08-27', 'm', '0', 'eat, jump, walk, transportRider, hee-haw'),
+('3', 'Skotinka', '2020-05-05', 'f', '0', 'eat, jump, walk, transportRider, hee-haw');
+
+INSERT INTO humanfriends.camels (id, name, birthDate, gender, isPredator, commands)
+VALUES 
+('1', 'Gorbachev', '2021-12-11', 'm', '0', 'eat, jump, walk, transportRider, spit'),
+('2', 'Alladin', '2016-04-14', 'm', '0', 'eat, jump, walk, transportRider, spit'),
+('3', 'Arabskaya Noch', '2009-01-02', 'f', '0', 'eat, jump, walk, transportRider, spit');
+
+-- Заполняем таблицу домашних животных через селект-запрос с объединением (к кошкам, собакам, хомякам)
+SET @id = 0;
+INSERT INTO humanfriends.pets
+SELECT @id := @id + 1 AS id, 'Cat' AS subtype, cats.name, cats.birthdate, cats.gender, cats.isPredator, cats.commands
+FROM humanfriends.cats
+UNION 
+SELECT @id := @id + 1 AS id, 'Dog' AS subtype, dogs.name, dogs.birthdate, dogs.gender, dogs.isPredator, dogs.commands
+FROM humanfriends.dogs
+UNION 
+SELECT @id := @id + 1 AS id, 'Hamster' AS subtype, hamsters.name, hamsters.birthdate, hamsters.gender, hamsters.isPredator, hamsters.commands
+FROM humanfriends.hamsters;
+````
+Удалить записи о верблюдах и объединить таблицы лошадей и ослов.
+````
+-- Удаляем записи о верблюдах в соответствии с заданием, выключаем на время этой операции безопасный режим (например, при ошибке в работе с MySQL Workbench) и включаем снова
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM humanfriends.camels;
+SET SQL_SAFE_UPDATES = 1;
+
+-- Объединяем лошадей и ослов в единую таблицу
+SET @id = 0;
+INSERT INTO humanfriends.packanimals
+SELECT @id := @id + 1 AS id, 'Horse' AS subtype, horses.name, horses.birthdate, horses.gender, horses.isPredator, horses.commands
+FROM humanfriends.horses
+UNION 
+SELECT @id := @id + 1 AS id, 'Donkey' AS subtype, donkeys.name, donkeys.birthdate, donkeys.gender, donkeys.isPredator, donkeys.commands
+FROM humanfriends.donkeys;
+````
+Создать новую таблицу для животных в возрасте от 1 до 3 лет и вычислить
 их возраст с точностью до месяца.
-- Объединить все созданные таблицы в одну, сохраняя информацию о
+````
+
+````
+Объединить все созданные таблицы в одну, сохраняя информацию о
 принадлежности к исходным таблицам.
