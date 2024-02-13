@@ -1,8 +1,13 @@
 package Java;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Donkey extends PackAnimal {
+    List<String> commands = Arrays.asList("кушать", "прыгать", "пройтись", "покатать на себе",
+            "понести груз", "закричать ИА");
 
     public Donkey(String name, LocalDate birthDate, char gender) {
         super(name, birthDate, gender);
@@ -61,8 +66,12 @@ public class Donkey extends PackAnimal {
 
     @Override
     public String toString() {
-        return String.format("Осёл, имя: " + this.name +
+        return String.format("Осёл (имя: " + this.name +
                 ", пол: " + this.gender + ", дата рождения: " + this.birthDate +
-                ", явл.хищником: " + this.isPredator);
+                ", явл.хищником: " + this.isPredator + ")");
+    }
+
+    public List<String> getCommands() {
+        return this.commands;
     }
 }

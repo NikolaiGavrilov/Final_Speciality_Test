@@ -1,9 +1,15 @@
 package Java;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class AnimalRegistry {
+
+    static List<Animal> animals = Arrays.asList();
 
     public static void addAnimal() {
         Scanner addAnimalScanner1 = new Scanner(System.in);
@@ -33,38 +39,42 @@ public class AnimalRegistry {
             switch (resultType) {
                 case 1:
                     Cat cat = new Cat(resultName, resultDate, resultGender);
+                    animals.add(cat);
                     System.out.println("Вы добавили животное " + cat.toString());
                     break;
                 case 2:
                     Dog dog = new Dog(resultName, resultDate, resultGender);
+                    animals.add(dog);
                     System.out.println("Вы добавили животное " + dog.toString());
                     break;
                 case 3:
                     Hamster hamster = new Hamster(resultName, resultDate, resultGender);
+                    animals.add(hamster);
                     System.out.println("Вы добавили животное " + hamster.toString());
                     break;
                 case 4:
                     Horse horse = new Horse(resultName, resultDate, resultGender);
+                    animals.add(horse);
                     System.out.println("Вы добавили животное " + horse.toString());
                     break;
                 case 5:
                     Donkey donkey = new Donkey(resultName, resultDate, resultGender);
+                    animals.add(donkey);
                     System.out.println("Вы добавили животное " + donkey.toString());
                     break;
                 case 6:
                     Camel camel = new Camel(resultName, resultDate, resultGender);
+                    animals.add(camel);
                     System.out.println("Вы добавили животное " + camel.toString());
                     break;
                 case 7:
                     determineType();
                 default:
-                    System.out.println(
-                            "Допущена ошибка. Метод перезапускается. Повторите все шаги, водя корректные значения.");
-                    addAnimal();
+                    throw new Exception("Введен некорректный номер");
             }
         } catch (Exception e) {
-            System.out.println(
-                    "Допущена ошибка. Метод перезапускается. Повторите все шаги, водя корректные значения.");
+            System.out.println("Допущена ошибка. Метод перезапускается." +
+                    "Повторите все шаги, водя корректные значения.\n");
             addAnimal();
         }
     }
@@ -136,4 +146,7 @@ public class AnimalRegistry {
         }
     }
 
+    public static void getCommands(Animal animal) {
+        System.out.println("Животное " + animal + " знает команды: " + animal.getCommands());
+    }
 }

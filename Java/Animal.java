@@ -1,12 +1,17 @@
 package Java;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class Animal {
     protected String name;
     protected LocalDate birthDate;
     protected char gender;
     protected boolean isPredator;
+
+    List<String> commands = Arrays.asList("кушать", "прыгать", "пройтись");
 
     protected Animal(String name, LocalDate birthDate, char gender) {
         this.name = name;
@@ -22,4 +27,5 @@ public abstract class Animal {
 
     public abstract void walk();
 
+    public abstract List<String> getCommands();
 }
