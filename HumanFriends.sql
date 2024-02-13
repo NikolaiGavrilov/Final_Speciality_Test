@@ -1,124 +1,7 @@
-# Итоговая контрольная работа по блоку специализация (Николай Гаврилов, февраль 2024 года)
-
-__Информация о проекте__
-
-Необходимо организовать систему учета для питомника в котором живут
-домашние и вьючные животные.
-___
-
-## Операционные системы и виртуализация (Linux)
-\
-__1. Использование команды cat в Linux__
-
-Создать два текстовых файла: "Pets"(Домашние животные) и "Pack
-animals"(вьючные животные), используя команду `cat` в терминале Linux. В
-первом файле перечислить собак, кошек и хомяков. Во втором — лошадей,
-верблюдов и ослов.
-Объединить содержимое этих двух файлов в один и просмотреть его
-содержимое.
-Переименовать получившийся файл в "Human Friends".
-Пример конечного вывода после команды “ls” :
-Desktop Documents Downloads HumanFriends.txt Music PackAnimals.txt
-Pets.txt Pictures Videos
-
-![Скриншот1](Images/Screenshot1.jpg)
-
-__2. Работа с директориями в Linux__
-
-Создать новую директорию и переместить туда файл "Human Friends".
-
-![Скриншот2](Images/Screenshot2.jpg)
-
-__3. Работа с MySQL в Linux. “Установить MySQL на вашу вычислительную
-машину”__
-
-Подключить дополнительный репозиторий MySQL и установить один из пакетов из этого репозитория.
-
-![Скриншот3](Images/Screenshot3.jpg)
-
-__4. Управление deb-пакетами__
-
-Установить и затем удалить deb-пакет, используя команду `dpkg`.
-
-![Скриншот4](Images/Screenshot4.jpg)
-
-__5. История команд в терминале Ubuntu__
-
-Сохранить и выложить историю ваших терминальных команд в Ubuntu.
-
-```
-mnogoliky@mnogolikyPC:~$ history
-    178  mkdir Final_Speciality_Test
-    179  cd Final_Speciality_Test
-    180  cat > Pets.txt
-    181  cat Pets.txt
-    182  cat > Pack_Animals.txt
-    183  cat Pets.txt Pack_Animals.txt > All_Animals.txt
-    184  more All_Animals.txt
-    185  mv All_Animals.txt Human_Friends.txt
-    186  ls
-    187  clear
-    188  ls
-    189  mkdir Animals_Dir
-    190  mv Human_Friends.txt Animals_Dir
-    191  ls - a
-    192  cd Animals_Dir
-    193  ll
-    194  history
-    195  clear
-    196  wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.16-1_all.deb
-    197  sudo dpkg -i mysql-apt-config_0.8.16-1_all.deb
-    198  sudo apt update
-    199  sudo apt-get install mysql-server
-    200  sudo mysql_secure_installation
-    201  sudo systemctl status mysql
-    202  history
-    203  sudo mysql
-    204  exit
-    205  history
-    206  clear
-    207  wget http://archive.ubuntu.com/ubuntu/pool/universe/m/mc/mc_4.8.24-2ubuntu1_amd64.deb
-    208  sudo dpkg -i mc_4.8.27-1_amd64.deb
-    209  sudo apt install -f
-    210  sudo dpkg -r mc
-    211  history
-```
-В формате: Файла с ФИО, датой сдачи, номером группы(или потока)
-
-___
-## Объектно-ориентированное программирование
-
-__6. Диаграмма классов__
-
-Создать диаграмму классов с родительским классом "Животные", и двумя
-подклассами: "Pets" и "Pack animals".
-В составы классов которых в случае Pets войдут классы: собаки, кошки,
-хомяки, а в класс Pack animals войдут: Лошади, верблюды и ослы.
-Каждый тип животных будет характеризоваться (например, имена, даты
-рождения, выполняемые команды и т.д)
-Диаграмму можно нарисовать в любом редакторе, такими как Lucidchart,
-Draw.io, Microsoft Visio и других.
-
-![Диаграмма](Images/Diagram.jpg)
-
-__7. Работа с MySQL (Задача выполняется в случае успешного выполнения
-задачи “Работа с MySQL в Linux. “Установить MySQL на вашу машину”)__
-
-7.1 После создания диаграммы классов в 6 пункте, в 7 пункте база данных
-"Human Friends" должна быть структурирована в соответствии с этой
-диаграммой. Например, можно создать таблицы, которые будут
-соответствовать классам "Pets" и "Pack animals", и в этих таблицах будут поля, которые характеризуют каждый тип животных (например, имена, даты
-рождения, выполняемые команды и т.д.).
-
-7.2 В ранее подключенном MySQL создать базу данных с названием
-"Human Friends".
-````
+-- Создаем базу данных humanfriends
 DROP DATABASE IF EXISTS humanfriends;
 CREATE DATABASE humanfriends;
-````
-Создать таблицы, соответствующие иерархии из вашей диаграммы
-классов.
-````
+
 -- Используем базу данных humanfriends для дальнейших действий
 USE humanfriends;
 
@@ -213,10 +96,7 @@ CREATE TABLE humanfriends.animals (
   gender CHAR(1) NOT NULL,
   isPredator TINYINT NOT NULL,
   commands TEXT NOT NULL);
-````
-Заполнить таблицы данными о животных, их командах и датах
-рождения.
-````
+
 -- Заполняем таблицы животными 
 INSERT INTO humanfriends.cats (name, birthDate, gender, isPredator, commands)
 VALUES 
@@ -263,9 +143,20 @@ FROM humanfriends.dogs
 UNION 
 SELECT hamsters.name, 'Hamster' AS subtype, hamsters.birthDate, hamsters.gender, hamsters.isPredator, hamsters.commands
 FROM humanfriends.hamsters;
-````
-Удалить записи о верблюдах и объединить таблицы лошадей и ослов.
-````
+
+-- Это был альтернативный менее удачный вариант заполнения
+/*SET @id = 0;
+INSERT INTO humanfriends.pets
+SELECT @id := @id + 1 AS id, 'Cat' AS subtype, cats.name, cats.birthdate, cats.gender, cats.isPredator, cats.commands
+FROM humanfriends.cats
+UNION 
+SELECT @id := @id + 1 AS id, 'Dog' AS subtype, dogs.name, dogs.birthdate, dogs.gender, dogs.isPredator, dogs.commands
+FROM humanfriends.dogs
+UNION 
+SELECT @id := @id + 1 AS id, 'Hamster' AS subtype, hamsters.name, hamsters.birthdate, hamsters.gender, hamsters.isPredator, hamsters.commands
+FROM humanfriends.hamsters;
+*/
+
 -- Удаляем записи о верблюдах в соответствии с заданием, выключаем на время этой операции безопасный режим (например, при ошибке в работе с MySQL Workbench) и включаем снова
 SET SQL_SAFE_UPDATES = 0;
 DELETE FROM humanfriends.camels;
@@ -278,10 +169,7 @@ FROM humanfriends.horses
 UNION 
 SELECT donkeys.name, 'Donkey' AS subtype, donkeys.birthDate, donkeys.gender, donkeys.isPredator, donkeys.commands
 FROM humanfriends.donkeys;
-````
-Создать новую таблицу для животных в возрасте от 1 до 3 лет и вычислить
-их возраст с точностью до месяца.
-````
+
 -- Создаем таблицу для животных в возрасте от 1 до 3 лет и вычисляем их возраст с точностью до месяца с округлением (до полных месяцев), записывая его в отдельный столбец.
 DROP TABLE IF EXISTS humanfriends.onetothreeyearanimals;
 CREATE TABLE humanfriends.onetothreeyearanimals AS
@@ -290,11 +178,7 @@ WHERE DATEDIFF(CURDATE(), birthDate)/30 >= 12 AND DATEDIFF(CURDATE(), birthDate)
 UNION
 SELECT *, FLOOR(DATEDIFF(CURDATE(), birthDate)/30) as ageInMonths FROM humanfriends.packanimals
 WHERE DATEDIFF(CURDATE(), birthDate)/30 >= 12 AND DATEDIFF(CURDATE(), birthDate)/30 <= 36;
-````
-Объединить все созданные таблицы в одну, сохраняя информацию о
-принадлежности к исходным таблицам.
 
-````
 -- Объединим все созданные таблицы с животными в одну (верблюдов тоже указываем, хотя помним, что таблица была очищена).
 
 INSERT INTO humanfriends.animals (name, type, subtype, birthDate, gender, isPredator, commands)
@@ -329,5 +213,8 @@ SET SQL_SAFE_UPDATES = 1;
 -- Выводим финальный результат в порядке возрастания индексов
 SELECT * FROM humanfriends.allanimalswithage
 ORDER BY id ASC;
-````
+
+
+
+
 
