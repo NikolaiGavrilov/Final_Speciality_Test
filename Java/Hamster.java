@@ -53,4 +53,10 @@ public class Hamster extends Pet {
             System.out.println("Ваш хомяк по имени " + this.name + " притворяется мёртвым");
     }
 
+    @Override
+    public String toString() {
+        return String.format("Хомяк, имя: " + this.name +
+                ", пол: " + this.gender + ", дата рождения: " + this.birthDate +
+                ", явл.хищником: " + this.isPredator);
+    }
 }

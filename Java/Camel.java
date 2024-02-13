@@ -59,4 +59,10 @@ public class Camel extends PackAnimal {
             System.out.println("Ваш верблюд по имени " + this.name + " плюётся в вас");
     }
 
+    @Override
+    public String toString() {
+        return String.format("Верблюд, имя: " + this.name +
+                ", пол: " + this.gender + ", дата рождения: " + this.birthDate +
+                ", явл.хищником: " + this.isPredator);
+    }
 }

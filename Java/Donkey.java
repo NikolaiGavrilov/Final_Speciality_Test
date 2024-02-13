@@ -59,4 +59,10 @@ public class Donkey extends PackAnimal {
             System.out.println("Ваш осёл по имени " + this.name + " кричит 'ИА!'");
     }
 
+    @Override
+    public String toString() {
+        return String.format("Осёл, имя: " + this.name +
+                ", пол: " + this.gender + ", дата рождения: " + this.birthDate +
+                ", явл.хищником: " + this.isPredator);
+    }
 }

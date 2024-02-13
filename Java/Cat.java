@@ -52,4 +52,10 @@ public class Cat extends Pet {
             System.out.println("Ваш кот по имени " + this.name + " мяукает");
     }
 
+    @Override
+    public String toString() {
+        return String.format("Кошка, имя: " + this.name +
+                ", пол: " + this.gender + ", дата рождения: " + this.birthDate +
+                ", явл.хищником: " + this.isPredator);
+    }
 }

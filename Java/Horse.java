@@ -59,4 +59,10 @@ public class Horse extends PackAnimal {
             System.out.println("Ваш конь по имени " + this.name + " издаёт ржание");
     }
 
+    @Override
+    public String toString() {
+        return String.format("Лошадь, имя: " + this.name +
+                ", пол: " + this.gender + ", дата рождения: " + this.birthDate +
+                ", явл.хищником: " + this.isPredator);
+    }
 }
