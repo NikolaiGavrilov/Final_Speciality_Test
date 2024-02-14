@@ -14,7 +14,7 @@ public class AnimalRegistry {
 
     public static void addAnimal() {
         Scanner addAnimalScanner1 = new Scanner(System.in);
-        System.out.println("Вы привели новое животное, как здорово! Как его зовут?\n" +
+        System.out.println("Вы завели новое животное, как здорово! Как его зовут?\n" +
                 "Только на латинице, пожалуйста. Наш реестр пока не настроен на русские символы.\n"
                 + "Введите имя: ");
         String resultName = addAnimalScanner1.next();
@@ -80,7 +80,7 @@ public class AnimalRegistry {
         }
     }
 
-    private static void determineType() {
+    public static void determineType() {
         Scanner determineAnimalScan1 = new Scanner(System.in);
         System.out.println(
                 "На этом животном можно ездить верхом взрослому человеку? 1 - да, 2 - нет\nВведите номер ответа:");
