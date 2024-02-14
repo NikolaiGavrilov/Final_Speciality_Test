@@ -171,18 +171,20 @@ public class AnimalRegistry {
             else
                 continue;
         }
+        animal.addTrainingPoints();
+        ;
         if (newcommands == 0) {
-            animal.getCommands().add("станцевать");
+            animal.newCommand("станцевать");
             System.out.println("Ваше животное освоило новый приём - станцевать.\n" +
                     "Используйте команду dance().");
         } else if (newcommands == 1) {
-            animal.getCommands().add("принести предмет");
+            animal.newCommand("принести предмет");
             System.out.println(
                     "Ваше животное освоило новый приём - принести предмет.\n" +
                             "Используйте команду bringItToMe(String object), указав в скобках желаемый предмет, " +
                             "и животное его принесёт.");
         } else if (newcommands == 2) {
-            animal.getCommands().add("делать сальто");
+            animal.newCommand("делать сальто");
             System.out.println(
                     "Ваше животное освоило новый приём - сальто. \n" +
                             "Используйте команду backFlip(), и животное сделает сальто назад.\n" +

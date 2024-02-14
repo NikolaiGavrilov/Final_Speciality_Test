@@ -74,4 +74,14 @@ public class Camel extends PackAnimal {
     public List<String> getCommands() {
         return this.commands;
     }
+
+    @Override
+    public void newCommand(String newCommand) {
+        List<String> list = new ArrayList<>();
+        for (String command : this.commands) {
+            list.add(command);
+        }
+        list.add(newCommand);
+        this.commands = list;
+    }
 }
