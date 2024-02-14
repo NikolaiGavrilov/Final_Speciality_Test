@@ -8,14 +8,14 @@ public class Main {
         // AnimalRegistry.addAnimal();
 
         // Пример вывода команд животного
-        // Cat cat1 = new Cat("Katya", LocalDate.parse("2010-10-10"), 'f');
-        // AnimalRegistry.showAnimalCommands(cat1);
-        // AnimalRegistry.trainAnimal(cat1);
-        // AnimalRegistry.showAnimalCommands(cat1);
-        // AnimalRegistry.trainAnimal(cat1);
-        // AnimalRegistry.showAnimalCommands(cat1);
-        // AnimalRegistry.trainAnimal(cat1);
-        // AnimalRegistry.showAnimalCommands(cat1);
+        Cat cat1 = new Cat("Katya", LocalDate.parse("2010-10-10"), 'f');
+        AnimalRegistry.showAnimalCommands(cat1);
+        AnimalRegistry.trainAnimal(cat1);
+        AnimalRegistry.showAnimalCommands(cat1);
+        AnimalRegistry.trainAnimal(cat1);
+        AnimalRegistry.showAnimalCommands(cat1);
+        AnimalRegistry.trainAnimal(cat1);
+        AnimalRegistry.showAnimalCommands(cat1);
 
         // Пример работы обучения животного новым командам
         // Dog dog = new Dog("Elfi", LocalDate.parse("2010-10-10"), 'f');
@@ -32,9 +32,9 @@ public class Main {
         // dog.frontFlip();
 
         // Пример вывода списка животных в реестре по дате
-        AnimalRegistry.addAnimal();
-        AnimalRegistry.addAnimal();
-        AnimalRegistry.addAnimal();
-        AnimalRegistry.showAnimalList();
+        // AnimalRegistry.addAnimal();
+        // AnimalRegistry.addAnimal();
+        // AnimalRegistry.addAnimal();
+        // AnimalRegistry.showAnimalList();
     }
 }

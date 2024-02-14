@@ -71,6 +71,7 @@ public class Camel extends PackAnimal {
                 ", явл.хищником: " + this.isPredator + ")");
     }
 
+    @Override
     public List<String> getCommands() {
         return this.commands;
     }

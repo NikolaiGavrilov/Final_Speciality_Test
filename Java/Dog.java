@@ -63,6 +63,7 @@ public class Dog extends Pet {
                 ", явл.хищником: " + this.isPredator + ")");
     }
 
+    @Override
     public List<String> getCommands() {
         return this.commands;
     }
