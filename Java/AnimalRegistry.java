@@ -1,6 +1,7 @@
 package Java;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class AnimalRegistry {
 
-    static List<Animal> animals = Arrays.asList();
+    static List<Animal> animals = new ArrayList<>();
 
     public static void addAnimal() {
         Scanner addAnimalScanner1 = new Scanner(System.in);
@@ -146,7 +147,47 @@ public class AnimalRegistry {
         }
     }
 
-    public static void getCommands(Animal animal) {
+    public static void showAnimalCommands(Animal animal) {
         System.out.println("Животное " + animal + " знает команды: " + animal.getCommands());
+    }
+
+    public static void showAnimalList() {
+        if (animals.size() == 0) {
+            System.out.println("В реестре пока нет животных, но вы можете их добавить.");
+        } else {
+            System.out.println("Cписок животных в реестре:\n" + animals);
+        }
+    }
+
+    public static void trainAnimal(Animal animal) {
+        int newcommands = 0;
+        for (String command : animal.getCommands()) {
+            if (command.equals("станцевать"))
+                newcommands++;
+            else if (command.equals("принести предмет"))
+                newcommands++;
+            else if (command.equals("сальто"))
+                newcommands++;
+            else
+                continue;
+        }
+        if (newcommands == 0) {
+            animal.getCommands().add("станцевать");
+            System.out.println("Ваше животное освоило новый приём - станцевать.\n" +
+                    "Используйте команду dance().");
+        } else if (newcommands == 1) {
+            animal.getCommands().add("принести предмет");
+            System.out.println(
+                    "Ваше животное освоило новый приём - принести предмет.\n" +
+                            "Используйте команду bringItToMe(String object), указав в скобках желаемый предмет, " +
+                            "и животное его принесёт.");
+        } else if (newcommands == 2) {
+            animal.getCommands().add("делать сальто");
+            System.out.println(
+                    "Ваше животное освоило новый приём - сальто. \n" +
+                            "Используйте команду backFlip(), и животное сделает сальто назад.\n" +
+                            "Используйте команду frontFlip(), и животное сделает сальто вперёд.");
+        } else
+            System.out.println("Ваше животное нечему учить, оно уже всё умеет.");
     }
 }
