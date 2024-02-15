@@ -351,6 +351,9 @@ __*В программе должен быть реализован следую
 
 __*Завести новое животное*__
 
+Примечание автора: далее в switch - case конструкцию выбора типа животного был внедрен 
+блок с try-with-resources и Счётчик из последнего задания, поэтому финальный вид данной функции несколько отличается от представленного ниже!
+
 ````
 public static void addAnimal() {
         Scanner addAnimalScanner1 = new Scanner(System.in);
@@ -560,7 +563,7 @@ public static void trainAnimal(Animal animal) {
 В родительском классе Animal прописываем дополнительно переменные, отвечающие за очки тренировки, метод увеличения этих очков, упомянутый в куске кода выше, а также все перечисленные выше новые методы, которые смогут использовать тренированные животные. Функционал этих методов будет ограничен, если животное не имеет достаточно очков. 
 
 ````
-public abstract void newCommand(String newCommand);
+    public abstract void newCommand(String newCommand);
 
     public void addTrainingPoints() {
         this.trainingPoints += 10;
@@ -636,6 +639,10 @@ public abstract void newCommand(String newCommand);
 
 __*Реализовать навигацию по меню*__
 
+#### [Класс, в котором реализована навигация по меню](/Java/Menu.java)
+
+Навигация по меню вызывается в классе Main через функцию Menu.start()
+
 ## 15 
 __*Создайте класс Счетчик, у которого есть метод add(), увеличивающий̆
 значение внутренней̆int переменной̆на 1 при нажатие “Завести новое
@@ -644,3 +651,18 @@ __*Создайте класс Счетчик, у которого есть м
 типа счетчик была не в ресурсном try и/или ресурс остался открыт. Значение
 считать в ресурсе try, если при заведения животного заполнены все поля.*__
 
+#### [Класс, в котором реализован счётчик](/Java/Counter.java)
+
+
+Использование счетчика через try - with - resources в одной из функций в классе AnimalRegistry:
+````
+try (Counter counter = new Counter()) {
+                        Cat cat = new Cat(resultName, resultDate, resultGender);
+                        animals.add(cat);
+                        System.out.println("Вы добавили животное " + cat.toString());
+                        Counter.add();
+                    } catch (Exception e) {
+                        System.out.println("Возникла непредвиденная ошибка. Попробуйте еще раз.");
+                    }
+                    break;
+````

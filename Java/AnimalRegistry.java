@@ -39,34 +39,64 @@ public class AnimalRegistry {
             int resultType = addAnimalScanner4.nextInt();
             switch (resultType) {
                 case 1:
-                    Cat cat = new Cat(resultName, resultDate, resultGender);
-                    animals.add(cat);
-                    System.out.println("Вы добавили животное " + cat.toString());
+                    try (Counter counter = new Counter()) {
+                        Cat cat = new Cat(resultName, resultDate, resultGender);
+                        animals.add(cat);
+                        System.out.println("Вы добавили животное " + cat.toString());
+                        Counter.add();
+                    } catch (Exception e) {
+                        System.out.println("Возникла непредвиденная ошибка. Попробуйте еще раз.");
+                    }
                     break;
                 case 2:
-                    Dog dog = new Dog(resultName, resultDate, resultGender);
-                    animals.add(dog);
-                    System.out.println("Вы добавили животное " + dog.toString());
+                    try (Counter counter = new Counter()) {
+                        Dog dog = new Dog(resultName, resultDate, resultGender);
+                        animals.add(dog);
+                        System.out.println("Вы добавили животное " + dog.toString());
+                        Counter.add();
+                    } catch (Exception e) {
+                        System.out.println("Возникла непредвиденная ошибка. Попробуйте еще раз.");
+                    }
                     break;
                 case 3:
-                    Hamster hamster = new Hamster(resultName, resultDate, resultGender);
-                    animals.add(hamster);
-                    System.out.println("Вы добавили животное " + hamster.toString());
+                    try (Counter counter = new Counter()) {
+                        Hamster hamster = new Hamster(resultName, resultDate, resultGender);
+                        animals.add(hamster);
+                        System.out.println("Вы добавили животное " + hamster.toString());
+                        Counter.add();
+                    } catch (Exception e) {
+                        System.out.println("Возникла непредвиденная ошибка. Попробуйте еще раз.");
+                    }
                     break;
                 case 4:
-                    Horse horse = new Horse(resultName, resultDate, resultGender);
-                    animals.add(horse);
-                    System.out.println("Вы добавили животное " + horse.toString());
+                    try (Counter counter = new Counter()) {
+                        Horse horse = new Horse(resultName, resultDate, resultGender);
+                        animals.add(horse);
+                        System.out.println("Вы добавили животное " + horse.toString());
+                        Counter.add();
+                    } catch (Exception e) {
+                        System.out.println("Возникла непредвиденная ошибка. Попробуйте еще раз.");
+                    }
                     break;
                 case 5:
-                    Donkey donkey = new Donkey(resultName, resultDate, resultGender);
-                    animals.add(donkey);
-                    System.out.println("Вы добавили животное " + donkey.toString());
+                    try (Counter counter = new Counter()) {
+                        Donkey donkey = new Donkey(resultName, resultDate, resultGender);
+                        animals.add(donkey);
+                        System.out.println("Вы добавили животное " + donkey.toString());
+                        Counter.add();
+                    } catch (Exception e) {
+                        System.out.println("Возникла непредвиденная ошибка. Попробуйте еще раз.");
+                    }
                     break;
                 case 6:
-                    Camel camel = new Camel(resultName, resultDate, resultGender);
-                    animals.add(camel);
-                    System.out.println("Вы добавили животное " + camel.toString());
+                    try (Counter counter = new Counter()) {
+                        Camel camel = new Camel(resultName, resultDate, resultGender);
+                        animals.add(camel);
+                        System.out.println("Вы добавили животное " + camel.toString());
+                        Counter.add();
+                    } catch (Exception e) {
+                        System.out.println("Возникла непредвиденная ошибка. Попробуйте еще раз.");
+                    }
                     break;
                 case 7:
                     determineType();
@@ -166,7 +196,7 @@ public class AnimalRegistry {
                 newcommands++;
             else if (command.equals("принести предмет"))
                 newcommands++;
-            else if (command.equals("сальто"))
+            else if (command.equals("делать сальто"))
                 newcommands++;
             else
                 continue;
@@ -189,7 +219,10 @@ public class AnimalRegistry {
                     "Ваше животное освоило новый приём - сальто. \n" +
                             "Используйте команду backFlip(), и животное сделает сальто назад.\n" +
                             "Используйте команду frontFlip(), и животное сделает сальто вперёд.");
-        } else
+        } else if (newcommands == 3) {
             System.out.println("Ваше животное нечему учить, оно уже всё умеет.");
+        } else {
+            System.out.println("Ваше животное нечему учить, оно уже всё умеет.");
+        }
     }
 }

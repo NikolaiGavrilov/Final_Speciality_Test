@@ -6,11 +6,12 @@ import java.util.Scanner;
 public class Menu {
 
     public static void start() {
+        System.out.println("Добро пожаловать!");
         while (true) {
             Scanner chooseFunction = new Scanner(System.in);
-            System.out.println("Добро пожаловать! Вам доступны следующие функции:" +
+            System.out.println("Вам доступны следующие функции:" +
                     "\n1 - завести животное, 2 - определить вид животного, 3 - список ваших животных,"
-                    + "\n4 - посмотреть список команд у животных, 5 - обучить животное, 6 - использовать команды животного");
+                    + "\n4 - посмотреть список команд у животных, 5 - обучить животное, 6 - использовать команды животного, 7 - показать счетчик ваших животных");
             int functionChoice = chooseFunction.nextInt();
             switch (functionChoice) {
                 case (1):
@@ -97,15 +98,21 @@ public class Menu {
                                 commandsCamel((Camel) yourAnimal);
                         }
                     }
+                    break;
+                case (7):
+                    System.out.println("Посмотрим, сколько животных вы завели...");
+                    Counter.animalCounter();
+                    break;
+                default:
+                    System.err.println("\n");
             }
-
         }
 
     }
 
     public static void commandsCat(Cat animal) {
         Scanner chooseAction = new Scanner(System.in);
-        System.out.println("Какими будут указания?"
+        System.out.println("Какими будут указания?\n"
                 + "1 - кушать, 2 - прыгать, 3 - пройтись, 4 - дать себя погладить, 5 - мяукнуть, "
                 + "6 - станцевать, 7 - принести предмет, 8 - делать сальто" + "\nВведите номер:");
         int actionChoice = chooseAction.nextInt();
@@ -142,7 +149,7 @@ public class Menu {
 
     public static void commandsDog(Dog animal) {
         Scanner chooseAction = new Scanner(System.in);
-        System.out.println("Какими будут указания?"
+        System.out.println("Какими будут указания?\n"
                 + "1 - кушать, 2 - прыгать, 3 - пройтись, 4 - дать себя погладить, 5 - гавкнуть, "
                 + "6 - станцевать, 7 - принести предмет, 8 - делать сальто" + "\nВведите номер:");
         int actionChoice = chooseAction.nextInt();
@@ -179,7 +186,7 @@ public class Menu {
 
     public static void commandsHamster(Hamster animal) {
         Scanner chooseAction = new Scanner(System.in);
-        System.out.println("Какими будут указания?"
+        System.out.println("Какими будут указания?\n"
                 + "1 - кушать, 2 - прыгать, 3 - пройтись, 4 - дать себя погладить, 5 - притвориться мертвым, "
                 + "6 - станцевать, 7 - принести предмет, 8 - делать сальто" + "\nВведите номер:");
         int actionChoice = chooseAction.nextInt();
@@ -216,7 +223,7 @@ public class Menu {
 
     public static void commandsHorse(Horse animal) {
         Scanner chooseAction = new Scanner(System.in);
-        System.out.println("Какими будут указания?"
+        System.out.println("Какими будут указания?\n"
                 + "1 - кушать, 2 - прыгать, 3 - пройтись, 4 - покатать меня, 5 - повезти мой груз, "
                 + "6 - заржать, 7 - станцевать, 8 - принести предмет, 9 - делать сальто" + "\nВведите номер:");
         int actionChoice = chooseAction.nextInt();
@@ -256,7 +263,7 @@ public class Menu {
 
     public static void commandsDonkey(Donkey animal) {
         Scanner chooseAction = new Scanner(System.in);
-        System.out.println("Какими будут указания?"
+        System.out.println("Какими будут указания?\n"
                 + "1 - кушать, 2 - прыгать, 3 - пройтись, 4 - покатать меня, 5 - повезти мой груз, "
                 + "6 - крикнуть ИА, 7 - станцевать, 8 - принести предмет, 9 - делать сальто" + "\nВведите номер:");
         int actionChoice = chooseAction.nextInt();
@@ -296,7 +303,7 @@ public class Menu {
 
     public static void commandsCamel(Camel animal) {
         Scanner chooseAction = new Scanner(System.in);
-        System.out.println("Какими будут указания?"
+        System.out.println("Какими будут указания?\n"
                 + "1 - кушать, 2 - прыгать, 3 - пройтись, 4 - покатать меня, 5 - повезти мой груз, "
                 + "6 - плюнуть, 7 - станцевать, 8 - принести предмет, 9 - делать сальто" + "\nВведите номер:");
         int actionChoice = chooseAction.nextInt();
